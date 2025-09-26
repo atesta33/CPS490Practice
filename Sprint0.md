@@ -12,3 +12,7 @@ Use Case 1: Register User
 
 The Actor in this Use Case is a New Customer. This use Case allows the New Customer to be able to register as a user and become a Registered Customer. For this use case the New Customer will Access the Website which will take them to the Home Page. From the Home Page they will Click on Become a Customer which will bring them to the Sign in Page. Then the New Customer will enter the required information to become a Registered Customer and the system will return this as a logged in User
 
+Use Case 2: Customer Log In
+
+The Actor in this Use Case will be a Registered Customer. This Use case allows a Registered Customer to log into their account. The Registered Customer will go onto the website which will bring them to the HomePage. Then
+
