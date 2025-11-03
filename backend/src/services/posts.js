@@ -9,15 +9,35 @@ export async function createPost(userId, {title, contents, tags}) {
 
 
 async function listPosts(
-    query = {},
-    {sortBy = 'createdAt', sortOrder = 'descending'} = {},
-){
+  query = {},
+  { sortBy = 'createdAt', sortOrder = 'descending' } = {}
+) {
+  const dir = sortOrder === 'ascending' ? 1 : -1; // asending or descending?
 
-    return await Post.find(query).sort({[sortBy]: sortOrder})
+  if (sortBy === 'descriptionLength') {
+    return await Post.aggregate([
+      { $match: query },
+      {
+        $addFields: {
+          descriptionLength: {
+            $strLenCP: { $ifNull: ['$contents', ''] }
+          }
+        }
+      },
+      { $sort: { descriptionLength: dir, updatedAt: -1, _id: 1 } }
+    ]);
+  }
+
+  const q = Post.find(query).sort({ [sortBy]: dir });
+  if (sortBy === 'title') {
+    q.collation({ locale: 'en', strength: 2, numericOrdering: true });
+  }
+  return await q;
 }
 
-export async function listAllPosts(options){
-    return await listPosts({}, options)
+// helper listallposts for listposts sort by desc
+export async function listAllPosts(options) {
+  return await listPosts({}, options);
 }
 
 export async function listPostsByAuthor(authorUsername, options) {
