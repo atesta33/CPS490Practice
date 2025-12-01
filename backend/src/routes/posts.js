@@ -2,6 +2,7 @@ import {
   listAllPosts,
   listPostsByAuthor,
   listPostsByTag,
+  listPostsByBidder,
   getPostById,
   createPost,
   updatePost,
@@ -13,15 +14,17 @@ import { requireAuth } from "../middleware/jwt.js";
 
 export function postsRoutes(app) {
   app.get("/api/v1/posts", async (req, res) => {
-    const { sortBy, sortOrder, author, tag } = req.query;
+    const { sortBy, sortOrder, author, tag, bidder } = req.query;
     const options = { sortBy, sortOrder };
     try {
-      if (author && tag) {
-        return res.status(400).json("Please filter by author or tag, not both");
+      if ((author && tag) || (author && bidder) || (tag && bidder)) {
+        return res.status(400).json("Please filter by only one parameter: author, tag, or bidder");
       } else if (author) {
         return res.json(await listPostsByAuthor(author, options));
       } else if (tag) {
         return res.json(await listPostsByTag(tag, options));
+      } else if (bidder) {
+        return res.json(await listPostsByBidder(bidder, options));
       } else {
         return res.json(await listAllPosts(options));
       }

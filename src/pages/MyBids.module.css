@@ -26,6 +26,30 @@
   color: var(--color-text-secondary);
 }
 
+.loading {
+  text-align: center;
+  padding: var(--spacing-3xl);
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+}
+
+.error {
+  text-align: center;
+  padding: var(--spacing-xl);
+  background-color: #fee;
+  color: #c33;
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-xl);
+}
+
+.emptyState {
+  text-align: center;
+  padding: var(--spacing-3xl);
+  background-color: var(--color-bg-primary);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-base);
+}
+
 .comingSoon {
   text-align: center;
   padding: var(--spacing-3xl);
@@ -43,12 +67,14 @@
   opacity: 0.5;
 }
 
+.emptyState h3,
 .comingSoon h3 {
   font-size: var(--font-size-2xl);
   color: var(--color-text-primary);
   margin-bottom: var(--spacing-md);
 }
 
+.emptyState p,
 .comingSoon p {
   font-size: var(--font-size-base);
   color: var(--color-text-secondary);

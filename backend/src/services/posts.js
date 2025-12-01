@@ -74,6 +74,12 @@ export async function listPostsByTag(tags, options) {
   return await listPosts({ tags }, options);
 }
 
+export async function listPostsByBidder(bidderId, options) {
+  return await Post.find({
+    'bids.bidder': bidderId
+  }).sort({ updatedAt: -1 });
+}
+
 export async function getPostById(postID) {
   return await Post.findById(postID);
 }
