@@ -1,3 +1,8 @@
+.marketplacePage {
+  min-height: 100vh;
+  background-color: var(--color-bg-secondary);
+}
+
 .blogPage {
   min-height: 100vh;
   background-color: var(--color-bg-secondary);
@@ -9,8 +14,37 @@
   padding: var(--spacing-xl) var(--spacing-lg);
 }
 
+.pageHeader {
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
+  padding: var(--spacing-xl) 0;
+}
+
+.pageTitle {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.pageSubtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
 .section {
   margin-bottom: var(--spacing-2xl);
+}
+
+.createListingSection {
+  background: linear-gradient(135deg, var(--color-bg-primary) 0%, #F3F4F6 100%);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-base);
+  padding: var(--spacing-xl);
+  margin-bottom: var(--spacing-2xl);
+  border: 2px solid var(--color-border);
 }
 
 .createPostSection {
@@ -26,6 +60,26 @@
   font-weight: var(--font-weight-bold);
   color: var(--color-text-primary);
   margin-bottom: var(--spacing-lg);
+}
+
+.listingsSection {
+  margin-top: var(--spacing-2xl);
+}
+
+.listingsTitle {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-xl);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.count {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-tertiary);
 }
 
 .toolbar {

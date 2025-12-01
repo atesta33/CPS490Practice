@@ -24,7 +24,10 @@ export function PostList({ posts = [] }) {
             typeof post.author === "string" ? post.author : post.author?._id
           }
           currentPrice={post.currentPrice}
+          startingPrice={post.startingPrice}
           status={post.status}
+          bids={post.bids}
+          endTime={post.endTime}
         />
       ))}
     </div>

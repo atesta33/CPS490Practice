@@ -6,6 +6,9 @@ import { Signup } from "./pages/Signup.jsx";
 import { Login } from "./pages/Login.jsx";
 import { Settings } from "./pages/Settings.jsx";
 import { PostDetail } from "./pages/PostDetail.jsx";
+import { BuyTokens } from "./pages/BuyTokens.jsx";
+import { MyListings } from "./pages/MyListings.jsx";
+import { MyBids } from "./pages/MyBids.jsx";
 import Inbox from "./pages/Inbox.jsx";
 import DMChat from "./pages/DMChat.jsx";
 
@@ -30,6 +33,18 @@ const router = createBrowserRouter([
   {
     path: "/settings",
     element: <Settings />,
+  },
+  {
+    path: "/buy-tokens",
+    element: <BuyTokens />,
+  },
+  {
+    path: "/my-listings",
+    element: <MyListings />,
+  },
+  {
+    path: "/my-bids",
+    element: <MyBids />,
   },
   {
     path: "/dm/:userId",

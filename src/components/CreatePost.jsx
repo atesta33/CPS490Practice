@@ -42,56 +42,76 @@ export function CreatePost() {
     <form onSubmit={handleSubmit} className={styles.createForm}>
       <div className={styles.formGroup}>
         <label htmlFor="create-title" className={styles.label}>
-          Title
+          Product Title
         </label>
         <input
           type="text"
           name="create-title"
           id="create-title"
-          placeholder="Give your listing a title..."
+          placeholder="e.g., Vintage Camera, Designer Watch..."
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           className={styles.titleInput}
+          required
         />
       </div>
 
       <div className={styles.formGroup}>
         <label htmlFor="create-contents" className={styles.label}>
-          Content
+          Product Description
         </label>
         <textarea
           id="create-contents"
-          placeholder="Share your listing..."
+          placeholder="Describe your item in detail..."
           value={contents}
           onChange={(e) => setContents(e.target.value)}
           className={styles.contentTextarea}
         />
       </div>
 
-      <div className={styles.formGroup}>
-        <label htmlFor="create-startTime" className={styles.label}>
-          Auction Start Time (optional)
-        </label>
-        <input
-          type="datetime-local"
-          id="create-startTime"
-          value={startTime}
-          onChange={(e) => setStartTime(e.target.value)}
-          className={styles.titleInput}
-        />
+      <div className={styles.formRow}>
+        <div className={styles.formGroup}>
+          <label htmlFor="create-startingPrice" className={styles.label}>
+            Starting Bid (Tokens)
+          </label>
+          <input
+            type="number"
+            id="create-startingPrice"
+            placeholder="e.g., 10"
+            value={startingPrice}
+            onChange={(e) => setStartingPrice(e.target.value)}
+            className={styles.titleInput}
+            min="1"
+          />
+        </div>
       </div>
 
-      <div className={styles.formGroup}>
-        <label htmlFor="create-endTime" className={styles.label}>
-          Auction End Time (optional)
-        </label>
-        <input
-          type="datetime-local"
-          id="create-endTime"
-          value={endTime}
-          onChange={(e) => setEndTime(e.target.value)}
-          className={styles.titleInput}
-        />
+      <div className={styles.formRow}>
+        <div className={styles.formGroup}>
+          <label htmlFor="create-startTime" className={styles.label}>
+            Auction Start (optional)
+          </label>
+          <input
+            type="datetime-local"
+            id="create-startTime"
+            value={startTime}
+            onChange={(e) => setStartTime(e.target.value)}
+            className={styles.titleInput}
+          />
+        </div>
+
+        <div className={styles.formGroup}>
+          <label htmlFor="create-endTime" className={styles.label}>
+            Auction End (optional)
+          </label>
+          <input
+            type="datetime-local"
+            id="create-endTime"
+            value={endTime}
+            onChange={(e) => setEndTime(e.target.value)}
+            className={styles.titleInput}
+          />
+        </div>
       </div>
 
       <button
@@ -104,7 +124,7 @@ export function CreatePost() {
 
       {createPostMutation.isSuccess && (
         <div className={styles.successMessage}>
-          ✓ Post created successfully!
+          ✓ Listing created successfully!
         </div>
       )}
     </form>

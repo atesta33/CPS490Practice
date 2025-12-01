@@ -20,18 +20,25 @@ export function Blog() {
 
         const posts = postsQuery.data ?? []
     return (
-        <div className={styles.blogPage}>
+        <div className={styles.marketplacePage}>
             <Header />
 
             <div className={styles.container}>
-                <section className={styles.createPostSection}>
-                    <h2 className={styles.sectionTitle}>Create New Post</h2>
+                <div className={styles.pageHeader}>
+                    <h1 className={styles.pageTitle}>🏪 Auction Marketplace</h1>
+                    <p className={styles.pageSubtitle}>
+                        Bid on exclusive items and win amazing deals
+                    </p>
+                </div>
+
+                <section className={styles.createListingSection}>
+                    <h2 className={styles.sectionTitle}>List Your Item</h2>
                     <CreatePost />
                 </section>
 
                 <div className={styles.toolbar}>
                     <div className={styles.filterGroup}>
-                        <span className={styles.toolbarLabel}>Filter</span>
+                        <span className={styles.toolbarLabel}>Filter by Seller</span>
                         <PostFilter
                             field='author'
                             value={author}
@@ -40,7 +47,7 @@ export function Blog() {
                     </div>
 
                     <div className={styles.sortGroup}>
-                        <span className={styles.toolbarLabel}>Sort</span>
+                        <span className={styles.toolbarLabel}>Sort Listings</span>
                         <PostSorting
                             fields={['createdAt', 'updatedAt', 'title', 'descriptionLength']}
                             value={sortBy}
@@ -51,7 +58,12 @@ export function Blog() {
                     </div>
                 </div>
 
-                <PostList posts={posts} />
+                <div className={styles.listingsSection}>
+                    <h2 className={styles.listingsTitle}>
+                        Active Auctions <span className={styles.count}>({posts.length})</span>
+                    </h2>
+                    <PostList posts={posts} />
+                </div>
             </div>
         </div>
     )

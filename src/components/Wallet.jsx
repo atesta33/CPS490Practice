@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "../contexts/AuthContext.jsx";
 import { getUserInfo } from "../api/users.js";
+import styles from "./Wallet.module.css";
 
 export function Wallet() {
   const { token, userId } = useAuth() || {};
@@ -16,12 +17,33 @@ export function Wallet() {
     queryFn: () => getUserInfo(userId),
   });
 
-  if (isLoading) return <span>Wallet: …</span>;
-  if (isError || !user) return <span>Wallet: error</span>;
+  if (isLoading) {
+    return (
+      <div className={styles.wallet}>
+        <span className={styles.label}>Tokens:</span>
+        <span className={styles.amount}>...</span>
+      </div>
+    );
+  }
+
+  if (isError || !user) {
+    return (
+      <div className={styles.wallet}>
+        <span className={styles.label}>Tokens:</span>
+        <span className={styles.amount}>--</span>
+      </div>
+    );
+  }
+
+  const tokenCount = user.tokens ?? 0;
 
   return (
-    <span>
-      Wallet: <strong>{user.tokens}</strong> tokens
-    </span>
+    <div className={styles.wallet}>
+      <span className={styles.icon}>🪙</span>
+      <div className={styles.content}>
+        <span className={styles.label}>Your Balance</span>
+        <span className={styles.amount}>{tokenCount} Tokens</span>
+      </div>
+    </div>
   );
 }

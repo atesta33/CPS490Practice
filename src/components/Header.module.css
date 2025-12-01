@@ -31,6 +31,11 @@
   text-decoration: none;
 }
 
+.brandIcon {
+  font-size: var(--font-size-2xl);
+  line-height: 1;
+}
+
 .nav {
   display: flex;
   align-items: center;
@@ -50,9 +55,34 @@
   flex-wrap: wrap;
 }
 
+.userDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
 .loggedInText {
   font-size: var(--font-size-sm);
-  color: var(--color-text-tertiary);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+}
+
+.buyTokensBtn {
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: white;
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
+}
+
+.buyTokensBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
+  text-decoration: none;
 }
 
 .username {
