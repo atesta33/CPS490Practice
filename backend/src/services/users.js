@@ -54,7 +54,14 @@ export async function getUserInfoById(userId) {
     try {
         const user = await User.findById(userId)
         if (!user) return {username: userId, tokens: 0}
-        return {username: user.username, tokens: user.tokens}
+
+        // ensure user has tokens field (for legacy users)
+        if (user.tokens === undefined || user.tokens === null) {
+            user.tokens = 100
+            await user.save()
+        }
+
+        return {username: user.username, tokens: user.tokens ?? 0}
     } catch (error) {
         return {username: userId, tokens: 0}
     }

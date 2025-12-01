@@ -53,7 +53,8 @@ export function PostDetail() {
       queryClient.invalidateQueries({ queryKey: ["user"] });
     },
     onError: (err) => {
-      alert(err.message);
+      console.error("Bid error:", err);
+      alert(err.message || "Failed to place bid");
     },
   });
 
