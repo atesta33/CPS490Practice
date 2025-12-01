@@ -53,10 +53,10 @@ export async function createUser({username, password}) {
 export async function getUserInfoById(userId) {
     try {
         const user = await User.findById(userId)
-        if (!user) return {username: userId}
-        return {username: user.username}
+        if (!user) return {username: userId, tokens: 0}
+        return {username: user.username, tokens: user.tokens}
     } catch (error) {
-        return {username: userId}
+        return {username: userId, tokens: 0}
     }
 }
 
