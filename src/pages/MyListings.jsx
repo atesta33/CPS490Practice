@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { jwtDecode } from 'jwt-decode';
 import { getPosts } from '../api/posts.js';
+import { getUserInfo } from '../api/users.js';
 import { PostList } from '../components/PostList';
 import { Header } from '../components/Header.jsx';
 import { useAuth } from '../contexts/AuthContext.jsx';
@@ -10,15 +11,23 @@ import styles from './MyListings.module.css';
 export function MyListings() {
   const [token] = useAuth();
 
-  let username = null;
+  let userId = null;
   if (token) {
     try {
       const decoded = jwtDecode(token);
-      username = decoded.username;
+      userId = decoded.sub;
     } catch (e) {
       console.error('Error decoding token:', e);
     }
   }
+
+  const userQuery = useQuery({
+    queryKey: ['user', userId],
+    queryFn: () => getUserInfo(userId),
+    enabled: !!userId,
+  });
+
+  const username = userQuery.data?.username;
 
   const postsQuery = useQuery({
     queryKey: ['posts', { author: username }],
