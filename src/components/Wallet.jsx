@@ -1,12 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
+import { jwtDecode } from "jwt-decode";
 import { useAuth } from "../contexts/AuthContext.jsx";
 import { getUserInfo } from "../api/users.js";
 import styles from "./Wallet.module.css";
 
 export function Wallet() {
-  const { token, userId } = useAuth() || {};
+  const [token] = useAuth() || [];
 
-  if (!token || !userId) return null;
+  if (!token) return null;
+
+  let userId;
+  try {
+    const decoded = jwtDecode(token);
+    userId = decoded.sub;
+  } catch (e) {
+    return null;
+  }
 
   const {
     data: user,
